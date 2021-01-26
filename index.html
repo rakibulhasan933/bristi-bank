@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bristi bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body>
+    <div id="login-area">
+        <h1 class="text-center">Welcome To bristi Bank</h1>
+        <div class="log">
+            <h4>Login</h4>
+            <input type="text" class="form-control" placeholder=" email">
+            <br>
+            <input type="password" class="form-control" placeholder=" password">
+            <br>
+            <button id="login" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+    <div id="Transaction-area">
+       <div class="row">
+           <div class="col-md-4">
+              <div class="Deposit status">
+                <h5>Deposit</h5>
+                <h2>$<span id="currentDeposit">000</span></h2>
+              </div>
+           </div>
+           <div class="col-md-4">
+            <div class="withrow status">
+                <h5>Withdraw</h5>
+                <h2>$ <span id="currentWithdraw">00</span></h2>
+            </div>
+           </div>
+           <div class="col-md-4">
+             <div class="balance status">
+                <h5>Balance</h5>
+                <h2>$ <span id="currentBalance">1240</span></h2>
+             </div>
+           </div>
+       </div>
+      <div class="row">
+            <div class="col-md-6">
+                <div class="log">
+                <h4>Deposit</h4>
+                <input type="text" id="depositAmount" class="form-control" placeholder="$ Enter Deposit amount">
+                <br>
+                <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="log">
+                <h4>Withdraw</h4>
+                <input id="WithdrawAmount" type="text" class="form-control" placeholder="$ Enter Withdraw amount">
+                <br>
+                <button id="addWithdraw" class="btn btn-success">Withdraw</button>
+            </div>
+            </div>
+        </div>
+      </div>
+    <script>
+        // login button handle click
+        var loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function(){
+           const loginArea = document.getElementById("login-area");
+           loginArea.style.display ="none";
+           const TransactionArea = document.getElementById("Transaction-area");
+           TransactionArea.style.display = "block" 
+        })
+        // Deposit button Event  handle 
+        const DepositBtn = document.getElementById('addDeposit');
+        DepositBtn.addEventListener("click", function(){
+            const DepositNumber = getInputAmount("depositAmount");
+
+            UpdatedSpanText("currentDeposit", DepositNumber);
+            UpdatedSpanText("currentBalance", DepositNumber);
+
+            document.getElementById("depositAmount").value = "";
+        })
+        // Withdraw button Event  handle
+        const WithdrawBtn = document.getElementById("addWithdraw");
+        WithdrawBtn.addEventListener("click", function(){
+            const WithdrawNumber = getInputAmount("WithdrawAmount");
+
+            UpdatedSpanText("currentWithdraw", WithdrawNumber);
+            UpdatedSpanText("currentBalance", -1 * WithdrawNumber);
+            document.getElementById("WithdrawAmount").value = "";
+        })
+        function getInputAmount(id) {
+            const Amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(Amount);
+            return amountNumber; 
+        }
+
+        function UpdatedSpanText(id , DepositNumber) {
+            const current =document.getElementById(id).innerText;
+            const CurrentNumber = parseFloat(current);
+            const total = CurrentNumber + DepositNumber;
+            document.getElementById(id).innerText = total;
+            
+            
+        }
+    </script>
+</body>
+</html>

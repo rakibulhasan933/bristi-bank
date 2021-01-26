@@ -1,0 +1,27 @@
+body{
+     padding: 100px;
+}
+.log{
+    margin-top: 50px;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px gray;
+}
+#Transaction-area{
+    display: none;
+}
+.status{
+    margin: 0 20px;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.Deposit{
+    background-color: blueviolet;
+}
+.withrow{
+    background-color: lightsalmon;
+}
+.balance{
+    background-color: chartreuse;
+}
